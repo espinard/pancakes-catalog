@@ -1,0 +1,34 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-title>
+      My Pancakes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true">
+  
+  <ion-grid>
+      <ion-row >
+          <ion-col size="6" *ngFor="let aPancake of panCollection">
+            <div class="centrage">
+              <h3>{{aPancake.nom}}</h3>
+              <a [routerLink] = "['/pancake' , aPancake.id]">
+                <ion-img  *ngIf="aPancake.picture" [src] = "aPancake.picture.webViewPath" alt="Pancake Image here"></ion-img>
+              </a>
+           </div>
+          
+          </ion-col>
+      </ion-row>
+  </ion-grid>  
+
+
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="onCreateNew()">
+          <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>

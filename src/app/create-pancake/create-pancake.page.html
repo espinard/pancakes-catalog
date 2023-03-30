@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nouvelle crêpe</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="myPhoto" >
+    <p>Image reçue</p>
+    <ion-img class="upload"  [src]="myPhoto.webViewPath"></ion-img>
+  </div>
+ 
+
+    <form #panForm="ngForm" (ngSubmit)="onAddPancake(panForm)" novalidate>
+          <ion-list>
+            
+            <!-- Zone photo -->
+              <ion-item>
+                  <ion-label>Photo:</ion-label>
+                  <ion-button type="button" (click)="onAddPicture()" > <ion-icon name="camera"></ion-icon></ion-button>
+              </ion-item>
+
+              <!-- Zone nom -->
+              <ion-item>
+                  <ion-label>Nom: </ion-label>
+                  <ion-input type="text" name="leNom" ngModel required #leNom="ngModel"></ion-input>
+              </ion-item>
+
+              <!-- Zone description -->
+              <ion-item>
+                <ion-label >Description: </ion-label>
+                <ion-textarea name="descr" 
+                              placeholder="Votre crêpe en quelques mots..." 
+                              ngModel 
+                              required #descr="ngModel">
+
+                </ion-textarea>
+            </ion-item>
+
+            <!-- Zone Position géographique -->
+            <ion-item>
+                <ion-label>Position de dégustation</ion-label>
+                <ion-button type="button" (click)="onSaveLocation()">Enregistrer la position</ion-button>
+            </ion-item>
+
+            <ion-item>
+                <ion-label *ngIf="myPosition">
+                   Latitude: {{myPosition.lati}} <br/>
+                </ion-label> 
+                <ion-label *ngIf="myPosition">
+                  Longitude : {{myPosition.longi}}
+                </ion-label>
+            </ion-item>
+            
+              <div>
+                <ion-button type="submit"> Enregistrer crêpe </ion-button>
+              </div>
+            
+          </ion-list>
+      </form>
+
+</ion-content>
